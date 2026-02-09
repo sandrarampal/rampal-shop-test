@@ -8,8 +8,8 @@ const Header = () => {
         <p>Shop</p>
       </Link>
       <div className="flex gap-5 absolute right-5 top-5">
-        <ButtonLink content="Login" path="/login" />
-        <ButtonLink content="Signup" path="/signup" />
+        <ButtonLink content="Login" path="/user/login" />
+        <ButtonLink content="Signup" path="/user/signup" />
       </div>
     </div>
   );
