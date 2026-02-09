@@ -17,6 +17,8 @@ type TStore = {
   incrementQuantity: (productId: string) => void;
   decrementQuantity: (productId: string) => void;
   getProductQuantity: (productId: string) => number;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 };
 
 export const useStore = create<TStore>()(
@@ -24,6 +26,11 @@ export const useStore = create<TStore>()(
     persist(
       immer((set, get) => {
         return {
+          searchQuery: "",
+          setSearchQuery: (query: string) => {
+            set({ searchQuery: query });
+          },
+
           cartItems: [],
           cartCounter: 0,
           totalPrice: 0,
