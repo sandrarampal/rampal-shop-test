@@ -1,4 +1,4 @@
-import ButtonSubmit from "./ButtonSubmit";
+import ButtonSubmit from "./buttons/ButtonSubmit";
 import { useActionState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import loginUser from "../actions/loginUser";

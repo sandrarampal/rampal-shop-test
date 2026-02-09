@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import ButtonLink from "./ButtonLink";
+import ButtonLink from "./buttons/ButtonLink";
 import useAuthContext from "../context/hooks/useAuthContext";
-import ButtonLogout from "./ButtonLogout";
+import ButtonLogout from "./buttons/ButtonLogout";
 
 const Header = () => {
   const { token } = useAuthContext();

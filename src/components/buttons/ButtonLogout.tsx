@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import useAuthContext from "../context/hooks/useAuthContext";
+import useAuthContext from "../../context/hooks/useAuthContext";
 
 const ButtonLogout = () => {
   const { setToken } = useAuthContext();
