@@ -10,19 +10,35 @@ const ProductsList = () => {
   if (error) return <div>{error.message}</div>;
   if (data)
     return (
-      <div className="flex flex-wrap gap-5 w-100">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {data.map((product: TProduct) => (
-          <div key={product._id} className="border p-5 mb-5">
-            <Link to={`/products/${product._id}`}>
-              <img
-                src={product.thumbnail}
-                alt={`photo du produit ${product.title}`}
-              />
-              <h3>{product.title}</h3>
-              <p>{product.description}</p>
-              <p>{product.price} €</p>
+          <div
+            key={product._id}
+            className="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+          >
+            <Link to={`/products/${product._id}`} className="block">
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src={product.thumbnail}
+                  alt={`photo du produit ${product.title}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">
+                  {product.title}
+                </h3>
+                <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+                  {product.description}
+                </p>
+                <p className="text-xl font-bold text-blue-600 mb-3">
+                  {product.price} €
+                </p>
+              </div>
             </Link>
-            <CounterQuantity product={product} />
+            <div className="p-4 pt-0 flex justify-center">
+              <CounterQuantity product={product} />
+            </div>
           </div>
         ))}
       </div>

@@ -30,10 +30,24 @@ const CounterQuantity = ({ product }: CounterQuantityProps) => {
   };
 
   return (
-    <div>
-      {quantity > 0 && <button onClick={handleDecrement}>-</button>}
-      <span>{quantity}</span>
-      <button onClick={handleIncrement}>+</button>
+    <div className="flex gap-4 text-xl items-center">
+      {quantity > 0 && (
+        <button
+          onClick={handleDecrement}
+          className="cursor-pointer hover:text-green-500 transition-colors duration-300"
+        >
+          -
+        </button>
+      )}
+      <span className="border border-gray-400 rounded-4xl w-7 h-7 flex items-center justify-center text-lg">
+        {quantity}
+      </span>
+      <button
+        onClick={handleIncrement}
+        className="cursor-pointer hover:text-green-500 transition-colors duration-300"
+      >
+        +
+      </button>
     </div>
   );
 };
