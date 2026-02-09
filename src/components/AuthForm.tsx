@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import loginUser from "../actions/loginUser";
 import createUser from "../actions/createUser";
 import Input from "./Input";
+import useAuthContext from "../context/hooks/useAuthContext";
 
 interface AuthFormProps {
   mode: "login" | "signup";
@@ -12,6 +13,7 @@ interface AuthFormProps {
 function AuthForm({ mode }: AuthFormProps) {
   const isLogin = mode === "login";
   const action = isLogin ? loginUser : createUser;
+  const { setIsAuthenticated } = useAuthContext();
 
   const [formState, formAction, isPending] = useActionState(action, {
     error: null,
@@ -22,6 +24,7 @@ function AuthForm({ mode }: AuthFormProps) {
 
   useEffect(() => {
     if (formState.isSuccess) {
+      setIsAuthenticated(true);
       navigate("/");
     }
   }, [formState.isSuccess, navigate]);

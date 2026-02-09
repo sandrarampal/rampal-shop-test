@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const loginUser = async (
   previousState: { error: string | null; isSuccess: boolean },
@@ -7,10 +8,12 @@ const loginUser = async (
   try {
     const email = formdata.get("email");
     const password = formdata.get("password");
-    await axios.post("http://localhost:4000/user/login", {
+    const response = await axios.post("http://localhost:4000/user/login", {
       email,
       password,
     });
+    const token = response.data.token;
+    Cookies.set("token", token);
     return { ...previousState, isSuccess: true };
   } catch (error) {
     if (error instanceof Error) {
