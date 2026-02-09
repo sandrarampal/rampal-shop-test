@@ -1,5 +1,5 @@
 import useProductQuery from "../queries/useProductQuery";
-import CounterCart from "../components/CounterCart";
+import CounterQuantity from "../components/CounterQuantity";
 import { useParams } from "react-router-dom";
 
 const OneProduct = () => {
@@ -18,7 +18,7 @@ const OneProduct = () => {
         <h3>{data.title}</h3>
         <p>{data.description}</p>
         <p>{data.price} €</p>
-        <CounterCart />
+        <CounterQuantity product={data} />
       </div>
     );
 };

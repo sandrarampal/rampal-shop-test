@@ -1,72 +1,120 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { devtools } from "zustand/middleware";
-import axios from "axios";
 import type { TProduct } from "../types";
 
+type TCartItem = {
+  product: TProduct;
+  quantity: number;
+};
+
 type TStore = {
-  products: TProduct[];
+  cartItems: TCartItem[];
   cartCounter: number;
-  increment: () => void;
-  decrement: () => void;
-  isLoading: boolean;
-  error: null | string;
-  fetch_products: () => Promise<void>;
+  totalPrice: number;
+  addToCart: (product: TProduct) => void;
+  removeFromCart: (productId: string) => void;
+  incrementQuantity: (productId: string) => void;
+  decrementQuantity: (productId: string) => void;
+  getProductQuantity: (productId: string) => number;
 };
 
 export const useStore = create<TStore>()(
   devtools(
-    immer((set) => {
+    immer((set, get) => {
       return {
+        cartItems: [],
         cartCounter: 0,
-        increment: () => {
+        totalPrice: 0,
+
+        addToCart: (product: TProduct) => {
           set(
             (state) => {
+              const existingItem = state.cartItems.find(
+                (item) => item.product._id === product._id,
+              );
+
+              if (existingItem) {
+                existingItem.quantity++;
+              } else {
+                state.cartItems.push({ product, quantity: 1 });
+              }
+
               state.cartCounter++;
+              state.totalPrice += product.price;
             },
             false,
-            "increment",
+            "addToCart",
           );
         },
-        decrement: () => {
+
+        removeFromCart: (productId: string) => {
           set(
             (state) => {
-              state.cartCounter--;
+              const itemIndex = state.cartItems.findIndex(
+                (item) => item.product._id === productId,
+              );
+
+              if (itemIndex !== -1) {
+                const item = state.cartItems[itemIndex];
+                state.cartCounter -= item.quantity;
+                state.totalPrice -= item.product.price * item.quantity;
+                state.cartItems.splice(itemIndex, 1);
+              }
             },
             false,
-            "decrement",
+            "removeFromCart",
           );
         },
-        products: [],
-        isLoading: true,
-        error: null,
-        fetch_products: async () => {
-          try {
-            const { data } = await axios.get<TProduct[]>(
-              "http://localhost:4000/products",
-            );
-            set(
-              (state) => {
-                state.isLoading = false;
-                state.products = data;
-              },
-              false,
-              "fetch_products/fullfilled",
-            );
-          } catch (error) {
-            set(
-              (state) => {
-                state.isLoading = false;
-                if (error instanceof Error) {
-                  state.error = error.message;
-                } else {
-                  state.error = "Une erreur est survenue";
+
+        incrementQuantity: (productId: string) => {
+          set(
+            (state) => {
+              const item = state.cartItems.find(
+                (item) => item.product._id === productId,
+              );
+
+              if (item) {
+                item.quantity++;
+                state.cartCounter++;
+                state.totalPrice += item.product.price;
+              }
+            },
+            false,
+            "incrementQuantity",
+          );
+        },
+
+        decrementQuantity: (productId: string) => {
+          set(
+            (state) => {
+              const item = state.cartItems.find(
+                (item) => item.product._id === productId,
+              );
+
+              if (item && item.quantity > 0) {
+                item.quantity--;
+                state.cartCounter--;
+                state.totalPrice -= item.product.price;
+
+                if (item.quantity === 0) {
+                  const itemIndex = state.cartItems.findIndex(
+                    (cartItem) => cartItem.product._id === productId,
+                  );
+                  state.cartItems.splice(itemIndex, 1);
                 }
-              },
-              false,
-              "fetch_products/rejected",
-            );
-          }
+              }
+            },
+            false,
+            "decrementQuantity",
+          );
+        },
+
+        getProductQuantity: (productId: string) => {
+          const item = get().cartItems.find(
+            (item) => item.product._id === productId,
+          );
+          return item ? item.quantity : 0;
         },
       };
     }),

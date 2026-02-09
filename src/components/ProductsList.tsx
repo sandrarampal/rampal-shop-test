@@ -1,6 +1,6 @@
 import useProductsQuery from "../queries/useProductsQuery";
 import type { TProduct } from "../types";
-import CounterCart from "./CounterCart";
+import CounterQuantity from "./CounterQuantity";
 import { Link } from "react-router-dom";
 
 const ProductsList = () => {
@@ -21,8 +21,8 @@ const ProductsList = () => {
               <h3>{product.title}</h3>
               <p>{product.description}</p>
               <p>{product.price} €</p>
-              <CounterCart />
             </Link>
+            <CounterQuantity product={product} />
           </div>
         ))}
       </div>

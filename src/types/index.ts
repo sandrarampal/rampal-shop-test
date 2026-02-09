@@ -11,3 +11,8 @@ export type TProduct = {
   price: number;
   thumbnail: string;
 };
+
+export type TCartItem = {
+  product: TProduct;
+  quantity: number;
+};
