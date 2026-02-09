@@ -30,14 +30,10 @@ function AuthForm({ mode }: AuthFormProps) {
     <div>
       <form action={formAction}>
         <Input type="email" placeholder="Email" name="email" />
-        <Input type="password" placeholder="Password" name="password" />
         {!isLogin && (
-          <Input
-            type="password"
-            placeholder="Confirm Password"
-            name="confirmPassword"
-          />
+          <Input type="username" placeholder="username" name="username" />
         )}
+        <Input type="password" placeholder="Password" name="password" />
         <ButtonSubmit content={isLogin ? "Login" : "Sign Up"} />
         {isPending && <p>Chargement...</p>}
         {formState.error && <p style={{ color: "red" }}>{formState.error}</p>}
