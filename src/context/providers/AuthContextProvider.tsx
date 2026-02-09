@@ -8,7 +8,6 @@ type TCompProps = {
 };
 
 const AuthContextProvider = ({ children }: TCompProps) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState<string | null>(
     Cookies.get("token") || null,
   );
@@ -16,8 +15,6 @@ const AuthContextProvider = ({ children }: TCompProps) => {
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticated: isAuthenticated,
-        setIsAuthenticated: setIsAuthenticated,
         token: token,
         setToken: setToken,
       }}
