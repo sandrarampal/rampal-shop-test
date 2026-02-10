@@ -1,30 +1,41 @@
-import ButtonLink from "../components/buttons/ButtonLink";
 import { useStore } from "../zustand/store";
+import useAuthContext from "../context/hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
+import CartSummary from "../components/CartSummary";
 
 const Cart = () => {
   const cartItems = useStore((store) => store.cartItems);
   const totalPrice = useStore((store) => store.totalPrice);
   const getProductQuantity = useStore((store) => store.getProductQuantity);
+  const navigate = useNavigate();
+  const { token } = useAuthContext();
+
+  const handleCheckout = () => {
+    if (!token) {
+      navigate("/user/login");
+    } else {
+      navigate("/payment");
+    }
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-5">Your Cart</h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
-        <div className="flex flex-col gap-5">
-          {cartItems.map((item) => (
-            <div key={item.product._id} className="flex items-center gap-5">
-              <div>
-                <p>{item.product.title}</p>
-                <p>${item.product.price}</p>
-                <p>Quantity: {getProductQuantity(item.product._id)}</p>
-              </div>
-            </div>
-          ))}
-          <h2 className="text-xl font-bold">Total: ${totalPrice.toFixed(2)}</h2>
-        </div>
+        <CartSummary
+          cartItems={cartItems}
+          totalPrice={totalPrice}
+          getProductQuantity={getProductQuantity}
+        />
       )}
-      <ButtonLink content="Go to checkout" path="/payment" />
+      <button
+        className="bg-green-300 p-3 rounded-lg cursor-pointer"
+        onClick={handleCheckout}
+      >
+        Go to Checkout
+      </button>
     </div>
   );
 };
