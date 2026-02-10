@@ -1,10 +1,11 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import type { AuthFormState } from "../types";
 
 const loginUser = async (
-  previousState: { error: string | null; isSuccess: boolean },
+  previousState: AuthFormState,
   formdata: FormData,
-) => {
+): Promise<AuthFormState> => {
   try {
     const email = formdata.get("email");
     const password = formdata.get("password");
@@ -14,7 +15,9 @@ const loginUser = async (
     });
     const token = response.data.token;
     Cookies.set("token", token);
-    return { ...previousState, isSuccess: true };
+    const isAdmin = response.data.admin || false;
+
+    return { ...previousState, isSuccess: true, isAdmin };
   } catch (error) {
     if (error instanceof Error) {
       return { ...previousState, error: error.message };

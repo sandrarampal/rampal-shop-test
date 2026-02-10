@@ -5,7 +5,7 @@ import ButtonLogout from "./buttons/ButtonLogout";
 import CartIcon from "./CartIcon";
 
 const Header = () => {
-  const { token } = useAuthContext();
+  const { token, isAdmin } = useAuthContext();
 
   return (
     <div className="h-20 bg-amber-600 flex items-center px-5  gap-5 sticky top-0 z-10">
@@ -20,6 +20,11 @@ const Header = () => {
         </div>
       )}
       {token && <ButtonLogout />}
+      {isAdmin && (
+        <div className="absolute right-5 top-5">
+          <ButtonLink content="Admin" path="/admin" />
+        </div>
+      )}
     </div>
   );
 };

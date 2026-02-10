@@ -1,10 +1,11 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import type { AuthFormState } from "../types";
 
 const createUser = async (
-  previousState: { error: string | null; isSuccess: boolean },
+  previousState: AuthFormState,
   formdata: FormData,
-) => {
+): Promise<AuthFormState> => {
   try {
     const username = formdata.get("username");
     const email = formdata.get("email");

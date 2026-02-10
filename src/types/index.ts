@@ -16,3 +16,9 @@ export type TCartItem = {
   product: TProduct;
   quantity: number;
 };
+
+export type AuthFormState = {
+  error: string | null;
+  isSuccess: boolean;
+  isAdmin?: boolean;
+};

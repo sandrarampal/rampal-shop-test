@@ -6,6 +6,7 @@ import createUser from "../actions/createUser";
 import Input from "./Input";
 import useAuthContext from "../context/hooks/useAuthContext";
 import Cookies from "js-cookie";
+import type { AuthFormState } from "../types";
 
 interface AuthFormProps {
   mode: "login" | "signup";
@@ -14,21 +15,24 @@ interface AuthFormProps {
 function AuthForm({ mode }: AuthFormProps) {
   const isLogin = mode === "login";
   const action = isLogin ? loginUser : createUser;
-  const { setToken } = useAuthContext();
+  const { setToken, setIsAdmin } = useAuthContext();
 
   const [formState, formAction, isPending] = useActionState(action, {
     error: null,
     isSuccess: false,
-  });
+  } as AuthFormState);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (formState.isSuccess) {
       setToken(Cookies.get("token") || null);
+      if (formState.isAdmin !== undefined) {
+        setIsAdmin?.(formState.isAdmin);
+      }
       navigate("/");
     }
-  }, [formState.isSuccess, navigate]);
+  }, [formState.isSuccess, navigate, setToken, setIsAdmin]);
 
   return (
     <div>
