@@ -123,6 +123,8 @@ export const useStore = create<TStore>()(
             set(
               (state) => {
                 state.cartItems = [];
+                state.cartCounter = 0;
+                state.totalPrice = 0;
               },
               false,
               "clearCart",
