@@ -1,27 +1,11 @@
 import type { TOrder } from "../types";
-import { useState } from "react";
-import axios from "axios";
-import useAuthContext from "../context/hooks/useAuthContext";
+import useChangeDeliveryMutation from "../mutations/useChangeDeliveryMutation";
 
 const OneOrder = ({ order }: { order: TOrder }) => {
-  const [isDelivered, setIsDelivered] = useState(order.delivered);
-  const { token } = useAuthContext();
+  const changeDeliveryMutation = useChangeDeliveryMutation(order._id);
 
-  const handleDeliveryChange = async () => {
-    try {
-      await axios.put(
-        `http://localhost:4000/orders/mark-delivered/${order._id}`,
-        { delivered: !isDelivered },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-    } catch (error) {
-      console.error("Error updating delivery status:", error);
-    }
-    setIsDelivered((prev) => !prev);
+  const handleDeliveryChange = (checked: boolean) => {
+    changeDeliveryMutation.mutate(checked);
   };
 
   return (
@@ -30,8 +14,16 @@ const OneOrder = ({ order }: { order: TOrder }) => {
       <p className="text-gray-600 mb-1">User: {order.owner.email}</p>
       <p className="text-gray-600 mb-1">Total: {order.price.toFixed(2)} €</p>
       <div className="flex items-center gap-4">
-        <p className="text-gray-600 ">Delivered:</p>
-        <input type="checkbox" onChange={handleDeliveryChange} />
+        <p className="text-gray-600">Delivered:</p>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            onChange={(e) => handleDeliveryChange(e.target.checked)}
+            checked={order.delivered}
+            disabled={changeDeliveryMutation.isPending}
+            className={`${changeDeliveryMutation.isPending ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+          />
+        </div>
       </div>
     </div>
   );
