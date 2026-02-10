@@ -24,7 +24,7 @@ export type AuthFormState = {
 };
 
 export type TOrderProduct = {
-  productId: string;
+  _id: string;
   quantity: number;
 };
 
@@ -34,4 +34,5 @@ export type TOrder = {
   price: number;
   address: string;
   owner: TUser;
+  delivered: boolean;
 };

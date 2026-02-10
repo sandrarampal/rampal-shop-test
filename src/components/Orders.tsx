@@ -1,5 +1,6 @@
 import useOrdersQuery from "../queries/useOrdersQuery";
 import useAuthContext from "../context/hooks/useAuthContext";
+import OneOrder from "./OneOrder";
 
 const Orders = () => {
   const { token } = useAuthContext();
@@ -11,17 +12,7 @@ const Orders = () => {
     return (
       <div>
         {data.map((order) => (
-          <div key={order._id} className="bg-white p-4 rounded-lg shadow mb-4">
-            <h3 className="text-lg font-semibold mb-2">
-              Order ID: {order._id}
-            </h3>
-            <p className="text-gray-600 mb-1">User: {order.owner.email}</p>
-            <p className="text-gray-600 mb-1">
-              Total: {order.price.toFixed(2)} €
-            </p>
-            <p className="text-gray-600 mb-1">Delivered:</p>
-            <input type="checkbox" />
-          </div>
+          <OneOrder key={order._id} order={order} />
         ))}
       </div>
     );
