@@ -10,11 +10,14 @@ const createUser = async (
     const username = formdata.get("username");
     const email = formdata.get("email");
     const password = formdata.get("password");
-    const response = await axios.post("http://localhost:4000/user/signup", {
-      username,
-      email,
-      password,
-    });
+    const response = await axios.post(
+      "http://site--rampal-shop-backend--96jcjn4jx467.code.run/user/signup",
+      {
+        username,
+        email,
+        password,
+      },
+    );
     const token = response.data.token;
     const isAdmin = response.data.admin || false;
     Cookies.set("isAdmin", isAdmin.toString());

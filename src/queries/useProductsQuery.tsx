@@ -10,7 +10,7 @@ const useProductsQuery = () => {
     queryKey: ["products", searchQuery],
     queryFn: async () => {
       const { data } = await axios.get<TProduct[]>(
-        `http://localhost:4000/products/?search=${searchQuery}`,
+        `http://site--rampal-shop-backend--96jcjn4jx467.code.run/products/?search=${searchQuery}`,
       );
       return data;
     },

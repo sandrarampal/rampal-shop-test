@@ -7,7 +7,7 @@ const useOrdersQuery = (token: string | null) =>
     queryKey: ["orders"],
     queryFn: async () => {
       const { data } = await axios.get<TOrder[]>(
-        "http://localhost:4000/orders",
+        "http://site--rampal-shop-backend--96jcjn4jx467.code.run/orders",
         {
           headers: {
             Authorization: `Bearer ${token}`,

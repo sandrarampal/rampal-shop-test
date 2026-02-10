@@ -20,8 +20,6 @@ const OneOrder = ({ order }: { order: TOrder }) => {
             type="checkbox"
             onChange={(e) => handleDeliveryChange(e.target.checked)}
             checked={order.delivered}
-            disabled={changeDeliveryMutation.isPending}
-            className={`${changeDeliveryMutation.isPending ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
           />
         </div>
       </div>

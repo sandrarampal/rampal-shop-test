@@ -9,10 +9,13 @@ const loginUser = async (
   try {
     const email = formdata.get("email");
     const password = formdata.get("password");
-    const response = await axios.post("http://localhost:4000/user/login", {
-      email,
-      password,
-    });
+    const response = await axios.post(
+      "http://site--rampal-shop-backend--96jcjn4jx467.code.run/user/login",
+      {
+        email,
+        password,
+      },
+    );
     const token = response.data.token;
     Cookies.set("token", token);
     const isAdmin = response.data.admin || false;
