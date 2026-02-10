@@ -1,7 +1,7 @@
 export type TUser = {
   username?: string;
   email: string;
-  password: string;
+  password?: string;
 };
 
 export type TProduct = {
@@ -21,4 +21,17 @@ export type AuthFormState = {
   error: string | null;
   isSuccess: boolean;
   isAdmin?: boolean;
+};
+
+export type TOrderProduct = {
+  productId: string;
+  quantity: number;
+};
+
+export type TOrder = {
+  _id: string;
+  products: TOrderProduct[];
+  price: number;
+  address: string;
+  owner: TUser;
 };

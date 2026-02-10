@@ -2,10 +2,16 @@ import Cookies from "js-cookie";
 import useAuthContext from "../../context/hooks/useAuthContext";
 
 const ButtonLogout = () => {
-  const { setToken } = useAuthContext();
+  const { setToken, setIsAdmin } = useAuthContext();
 
   const handleLogout = () => {
     Cookies.remove("token");
+    if (Cookies.get("isAdmin")) {
+      Cookies.remove("isAdmin");
+    }
+    if (setIsAdmin) {
+      setIsAdmin(false);
+    }
     setToken(null);
   };
 

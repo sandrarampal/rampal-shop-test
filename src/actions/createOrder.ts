@@ -1,12 +1,8 @@
 import axios from "axios";
-
-interface OrderProduct {
-  productId: string;
-  quantity: number;
-}
+import type { TOrderProduct } from "../types";
 
 interface CreateOrderRequest {
-  products: OrderProduct[];
+  products: TOrderProduct[];
   address: string;
   price: number;
 }
