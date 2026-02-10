@@ -16,8 +16,10 @@ const createUser = async (
       password,
     });
     const token = response.data.token;
+    const isAdmin = response.data.admin || false;
+    Cookies.set("isAdmin", isAdmin.toString());
     Cookies.set("token", token);
-    return { ...previousState, isSuccess: true };
+    return { ...previousState, isSuccess: true, isAdmin: isAdmin };
   } catch (error) {
     if (error instanceof Error) {
       return { ...previousState, error: error.message };

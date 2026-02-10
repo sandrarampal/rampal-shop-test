@@ -11,7 +11,9 @@ const AuthContextProvider = ({ children }: TCompProps) => {
   const [token, setToken] = useState<string | null>(
     Cookies.get("token") || null,
   );
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(
+    Cookies.get("isAdmin") === "true" || false,
+  );
 
   return (
     <AuthContext.Provider

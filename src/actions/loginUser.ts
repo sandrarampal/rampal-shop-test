@@ -16,6 +16,7 @@ const loginUser = async (
     const token = response.data.token;
     Cookies.set("token", token);
     const isAdmin = response.data.admin || false;
+    Cookies.set("isAdmin", isAdmin.toString());
 
     return { ...previousState, isSuccess: true, isAdmin };
   } catch (error) {
