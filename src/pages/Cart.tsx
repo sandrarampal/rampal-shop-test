@@ -19,10 +19,10 @@ const Cart = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center my-10">
       <h1 className="text-2xl font-bold mb-5">Your Cart</h1>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty</p>
+        <p className="mb-6">Your cart is empty</p>
       ) : (
         <CartSummary
           cartItems={cartItems}
@@ -31,7 +31,7 @@ const Cart = () => {
         />
       )}
       <button
-        className="bg-green-300 p-3 rounded-lg cursor-pointer"
+        className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-200 hover:text-black hover:border transition-colors duration-300 cursor-pointer"
         onClick={handleCheckout}
       >
         Go to Checkout

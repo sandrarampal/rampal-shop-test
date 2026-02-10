@@ -36,7 +36,7 @@ function AuthForm({ mode }: AuthFormProps) {
 
   return (
     <div>
-      <form action={formAction}>
+      <form action={formAction} className="flex flex-col items-center gap-6">
         <Input type="email" placeholder="Email" name="email" />
         {!isLogin && (
           <Input type="username" placeholder="username" name="username" />

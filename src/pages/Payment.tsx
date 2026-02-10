@@ -29,7 +29,7 @@ const Payment = () => {
 
     try {
       const products = cartItems.map((item) => ({
-        productId: item.product._id,
+        _id: item.product._id,
         quantity: getProductQuantity(item.product._id),
       }));
 

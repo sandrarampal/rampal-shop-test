@@ -10,7 +10,7 @@ const ProductsList = () => {
   if (error) return <div>{error.message}</div>;
   if (data)
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-7">
         {data.map((product: TProduct) => (
           <div
             key={product._id}
@@ -28,10 +28,8 @@ const ProductsList = () => {
                 <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">
                   {product.title}
                 </h3>
-                <p className="text-gray-600 text-sm mb-3 line-clamp-3">
-                  {product.description}
-                </p>
-                <p className="text-xl font-bold text-blue-600 mb-3">
+
+                <p className="text-xl font-bold text-purple-900 mb-3">
                   {product.price} €
                 </p>
               </div>

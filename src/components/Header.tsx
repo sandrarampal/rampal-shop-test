@@ -8,9 +8,9 @@ const Header = () => {
   const { token, isAdmin } = useAuthContext();
 
   return (
-    <div className="h-20 bg-amber-600 flex items-center px-5  gap-5 sticky top-0 z-10">
+    <div className="h-20 bg-purple-400 flex items-center px-5  gap-5 sticky top-0 z-10">
       <Link to="/">
-        <p>Shop</p>
+        <h1 className="text-4xl font-bold">E-Store</h1>
       </Link>
       <CartIcon />
       {!token && (
@@ -19,10 +19,14 @@ const Header = () => {
           <ButtonLink content="Signup" path="/user/signup" />
         </div>
       )}
-      {token && <ButtonLogout />}
       {isAdmin && (
-        <div className="absolute right-5 top-5">
+        <div className="absolute right-30 top-5">
           <ButtonLink content="Admin" path="/admin" />
+        </div>
+      )}
+      {token && (
+        <div className="absolute right-5 top-5">
+          <ButtonLogout />
         </div>
       )}
     </div>

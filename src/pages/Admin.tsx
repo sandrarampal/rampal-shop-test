@@ -9,9 +9,9 @@ const Admin = () => {
     return <Navigate to="/user/login" />;
   }
   return (
-    <div>
-      <h2>Administration Portal</h2>
-      <h3>Orders</h3>
+    <div className="flex flex-col items-center">
+      <h2 className="text-3xl m-4">Administration Portal</h2>
+      <h3 className="text-xl mb-4">Orders</h3>
       <Orders />
     </div>
   );

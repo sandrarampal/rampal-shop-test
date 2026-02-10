@@ -29,8 +29,10 @@ const OneOrder = ({ order }: { order: TOrder }) => {
       <h3 className="text-lg font-semibold mb-2">Order ID: {order._id}</h3>
       <p className="text-gray-600 mb-1">User: {order.owner.email}</p>
       <p className="text-gray-600 mb-1">Total: {order.price.toFixed(2)} €</p>
-      <p className="text-gray-600 mb-1">Delivered:</p>
-      <input type="checkbox" onChange={handleDeliveryChange} />
+      <div className="flex items-center gap-4">
+        <p className="text-gray-600 ">Delivered:</p>
+        <input type="checkbox" onChange={handleDeliveryChange} />
+      </div>
     </div>
   );
 };

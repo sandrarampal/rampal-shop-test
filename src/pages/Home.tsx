@@ -6,7 +6,7 @@ const Home = () => {
       <p>Welcome to my store</p>
       <Link
         to="/products"
-        className="px-5 py-2 bg-amber-600 text-white rounded"
+        className="px-5 py-2 bg-purple-900 text-white rounded"
       >
         <p>Access to our offers</p>
       </Link>

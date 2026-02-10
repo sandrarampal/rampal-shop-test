@@ -6,8 +6,8 @@ const CartIcon = () => {
 
   return (
     <Link to="/cart">
-      <div className="relative">
-        <p className="absolute bg-red-500 rounded-2xl w-5 h-5 flex items-center justify-center bottom-4 left-4 text-xs text-white">
+      <div className="relative hover:scale-110 transition duration-300">
+        <p className="absolute bg-purple-900 rounded-2xl w-5 h-5 flex items-center justify-center bottom-4 left-4 text-xs text-white">
           {cartCounter}
         </p>
         <FaShoppingCart className="text-2xl" />
