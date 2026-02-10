@@ -19,6 +19,7 @@ type TStore = {
   getProductQuantity: (productId: string) => number;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  clearCart: () => void;
 };
 
 export const useStore = create<TStore>()(
@@ -115,6 +116,16 @@ export const useStore = create<TStore>()(
               },
               false,
               "decrementQuantity",
+            );
+          },
+
+          clearCart: () => {
+            set(
+              (state) => {
+                state.cartItems = [];
+              },
+              false,
+              "clearCart",
             );
           },
 

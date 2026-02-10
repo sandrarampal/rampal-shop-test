@@ -11,10 +11,12 @@ const Payment = () => {
   const cartItems = useStore((store) => store.cartItems);
   const totalPrice = useStore((store) => store.totalPrice);
   const getProductQuantity = useStore((store) => store.getProductQuantity);
+  const clearCart = useStore((store) => store.clearCart);
 
   const [address, setAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handlePlaceOrder = async () => {
     if (!address.trim()) {
@@ -37,6 +39,8 @@ const Payment = () => {
         price: totalPrice,
       };
       await createOrder(orderData, token!);
+      setSuccessMessage("Order placed successfully!");
+      clearCart();
     } catch (error) {
       setError("Failed to place order. Please try again.");
     } finally {
@@ -56,6 +60,9 @@ const Payment = () => {
       <InputAdress onAddressChange={setAddress} />
 
       {error && <p className="text-red-600 text-sm">{error}</p>}
+      {successMessage && (
+        <p className="text-green-600 text-sm">{successMessage}</p>
+      )}
       <button
         onClick={handlePlaceOrder}
         disabled={isLoading || cartItems.length === 0}
