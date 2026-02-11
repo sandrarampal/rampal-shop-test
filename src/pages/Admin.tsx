@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import useAuthContext from "../context/hooks/useAuthContext";
 import Orders from "../components/Orders";
+import Title from "../components/Title";
 
 const Admin = () => {
   const { isAdmin } = useAuthContext();
@@ -10,8 +11,7 @@ const Admin = () => {
   }
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-3xl m-4">Administration Portal</h2>
-      <h3 className="text-xl mb-4">Orders</h3>
+      <Title content="Admin Dashboard" />
       <Orders />
     </div>
   );
