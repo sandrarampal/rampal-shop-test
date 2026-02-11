@@ -3,6 +3,7 @@ import useAuthContext from "../context/hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import CartSummary from "../components/CartSummary";
 import Title from "../components/Title";
+import ButtonLink from "../components/buttons/ButtonLink";
 
 const Cart = () => {
   const cartItems = useStore((store) => store.cartItems);
@@ -29,14 +30,19 @@ const Cart = () => {
           cartItems={cartItems}
           totalPrice={totalPrice}
           getProductQuantity={getProductQuantity}
+          mode="cart"
         />
       )}
-      <button
-        className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-200 hover:text-black hover:border transition-colors duration-300 cursor-pointer"
-        onClick={handleCheckout}
-      >
-        Go to Checkout
-      </button>
+      {cartItems.length > 0 && (
+        <button
+          className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-200 hover:text-black hover:border transition-colors duration-300 cursor-pointer mb-4"
+          onClick={handleCheckout}
+        >
+          Go to Checkout
+        </button>
+      )}
+
+      <ButtonLink content="Back to Products" path="/products" />
     </div>
   );
 };

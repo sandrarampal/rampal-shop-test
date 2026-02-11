@@ -27,7 +27,7 @@ const CounterQuantity = memo(({ product }: CounterQuantityProps) => {
   };
 
   return (
-    <div className="flex gap-3 md:gap-4 text-lg md:text-xl items-center border border-gray-200 rounded-full p-2 bg-white shadow-sm">
+    <div className="flex gap-3 md:gap-2 text-lg md:text-xl items-center border border-gray-200 rounded-full p-1 bg-white shadow-sm">
       <button
         onClick={handleDecrement}
         className={`cursor-pointer hover:text-green-500 transition-colors duration-300 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full hover:bg-gray-100 ${quantity === 0 ? "text-gray-200 cursor-not-allowed" : ""}`}

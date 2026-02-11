@@ -12,7 +12,6 @@ export const createOrder = async (
   token: string,
 ) => {
   try {
-    console.log(token);
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}orders`,
       orderData,

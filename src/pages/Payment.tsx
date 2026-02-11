@@ -55,23 +55,26 @@ const Payment = () => {
   ) : (
     <div className="flex flex-col mx-20  ">
       <div className="flex justify-center">
-        <Title content="Payment" />
+        <Title content="Checkout" />
       </div>
-      <CartSummary
-        cartItems={cartItems}
-        totalPrice={totalPrice}
-        getProductQuantity={getProductQuantity}
-      />
-      <div>
-        <InputAdress onAddressChange={setAddress} />
-        <OrderStatus error={error} successMessage={successMessage} />
-        <button
-          onClick={handlePlaceOrder}
-          disabled={isLoading || cartItems.length === 0}
-          className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-200 hover:text-black hover:border transition-colors duration-300 cursor-pointer my-5 "
-        >
-          {isLoading ? "Placing Order..." : "Place Order"}
-        </button>
+      <div className="lg:flex lg:justify-center lg:gap-50 lg:mt-20 lg:items-center">
+        <CartSummary
+          cartItems={cartItems}
+          totalPrice={totalPrice}
+          getProductQuantity={getProductQuantity}
+          mode="checkout"
+        />
+        <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 px-10 py-8 rounded-xl shadow ">
+          <InputAdress onAddressChange={setAddress} />
+          <OrderStatus error={error} successMessage={successMessage} />
+          <button
+            onClick={handlePlaceOrder}
+            disabled={isLoading || cartItems.length === 0}
+            className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-200 hover:text-black hover:border transition-colors duration-300 cursor-pointer my-5 "
+          >
+            {isLoading ? "Placing Order..." : "Place Order"}
+          </button>
+        </div>
       </div>
     </div>
   );
