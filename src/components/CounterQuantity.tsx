@@ -1,19 +1,16 @@
 import { useStore } from "../zustand/store";
 import type { TProduct } from "../types";
+import { memo } from "react";
 
 interface CounterQuantityProps {
   product: TProduct;
 }
 
-const CounterQuantity = ({ product }: CounterQuantityProps) => {
-  const {
-    incrementQuantity,
-    decrementQuantity,
-    getProductQuantity,
-    addToCart,
-  } = useStore((store) => store);
-
-  const quantity = getProductQuantity(product._id);
+const CounterQuantity = memo(({ product }: CounterQuantityProps) => {
+  const quantity = useStore((store) => store.getProductQuantity(product._id));
+  const incrementQuantity = useStore((store) => store.incrementQuantity);
+  const decrementQuantity = useStore((store) => store.decrementQuantity);
+  const addToCart = useStore((store) => store.addToCart);
 
   const handleIncrement = () => {
     if (quantity === 0) {
@@ -30,16 +27,15 @@ const CounterQuantity = ({ product }: CounterQuantityProps) => {
   };
 
   return (
-    <div className="flex gap-4 text-xl items-center">
-      {quantity > 0 && (
-        <button
-          onClick={handleDecrement}
-          className="cursor-pointer hover:text-green-500 transition-colors duration-300"
-        >
-          -
-        </button>
-      )}
-      <span className="border border-gray-400 rounded-4xl w-7 h-7 flex items-center justify-center text-lg">
+    <div className="flex gap-4 text-xl items-centerborder">
+      <button
+        onClick={handleDecrement}
+        className={`cursor-pointer hover:text-green-500 transition-colors duration-300 ${quantity === 0 ? "text-gray-200 cursor-not-allowed" : ""}`}
+      >
+        -
+      </button>
+
+      <span className=" bg-gray-300 rounded-4xl w-7 h-7 flex items-center justify-center text-lg">
         {quantity}
       </span>
       <button
@@ -50,6 +46,6 @@ const CounterQuantity = ({ product }: CounterQuantityProps) => {
       </button>
     </div>
   );
-};
+});
 
 export default CounterQuantity;

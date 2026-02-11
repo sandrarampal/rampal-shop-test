@@ -2,8 +2,9 @@ import useProductsQuery from "../queries/useProductsQuery";
 import type { TProduct } from "../types";
 import CounterQuantity from "./CounterQuantity";
 import { Link } from "react-router-dom";
+import { memo } from "react";
 
-const ProductsList = () => {
+const ProductsList = memo(() => {
   const { data, error, isLoading } = useProductsQuery();
 
   if (isLoading) return <div>Loading...</div>;
@@ -41,6 +42,6 @@ const ProductsList = () => {
         ))}
       </div>
     );
-};
+});
 
 export default ProductsList;

@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
+import Title from "../components/Title";
+import ButtonLink from "../components/buttons/ButtonLink";
 
 const Home = () => {
   return (
-    <div className="flex justify-center mt-40 flex-col items-center gap-5">
-      <p>Welcome to my store</p>
-      <Link
-        to="/products"
-        className="px-5 py-2 bg-purple-900 text-white rounded"
-      >
-        <p>Access to our offers</p>
-      </Link>
+    <div className="flex justify-center mt-40 flex-col items-center">
+      <Title content="Welcome to E-store!" />
+      <div className="mb-10 flex flex-col gap-2">
+        <p>Find everything you need in on click.</p>
+        <p>Login to order your dream product</p>
+      </div>
+      <ButtonLink content="Access to our offers" path="/products" />
     </div>
   );
 };
