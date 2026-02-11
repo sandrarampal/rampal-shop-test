@@ -9,9 +9,9 @@ const OneOrder = ({ order }: { order: TOrder }) => {
   };
 
   return (
-    <div key={order._id} className="bg-white p-4 rounded-lg shadow mb-4">
+    <div key={order._id} className="bg-white p-4 rounded-lg shadow lg:w-150">
       <h3 className="text-lg font-semibold mb-2">Order ID: {order._id}</h3>
-      <p className="text-gray-600 mb-1">User: {order.owner.email}</p>
+      <p className="text-gray-600 mb-1">Owner: {order.owner.email}</p>
       <p className="text-gray-600 mb-1">Total: {order.price.toFixed(2)} €</p>
       <div className="flex items-center gap-4">
         <p className="text-gray-600">Delivered:</p>
