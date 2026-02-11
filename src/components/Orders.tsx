@@ -4,6 +4,7 @@ import OneOrder from "./OneOrder";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { useState, useEffect } from "react";
+import Loader from "./Loader";
 
 const Orders = () => {
   const { token } = useAuthContext();
@@ -26,7 +27,7 @@ const Orders = () => {
     setDraggableOrders(items);
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>{error.message}</div>;
 
   if (!draggableOrders || draggableOrders.length === 0) {

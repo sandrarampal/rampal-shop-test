@@ -2,6 +2,7 @@ import useProductQuery from "../queries/useProductQuery";
 import CounterQuantity from "../components/CounterQuantity";
 import { Link, useParams } from "react-router-dom";
 import ProductInfos from "../components/ProductInfos";
+import Loader from "../components/Loader";
 
 const OneProduct = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const OneProduct = () => {
 
   const { data, error, isLoading } = useProductQuery(id);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>{error.message}</div>;
   if (data)
     return (

@@ -3,11 +3,12 @@ import type { TProduct } from "../types";
 import CounterQuantity from "./CounterQuantity";
 import { Link } from "react-router-dom";
 import { memo } from "react";
+import Loader from "./Loader";
 
 const ProductsList = memo(() => {
   const { data, error, isLoading } = useProductsQuery();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>{error.message}</div>;
   if (data)
     return (
