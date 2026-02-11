@@ -10,6 +10,15 @@ export type TProduct = {
   description: string;
   price: number;
   thumbnail: string;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+  rating: number;
+  brand: string;
+  images: string[];
+  category: string;
 };
 
 export type TCartItem = {

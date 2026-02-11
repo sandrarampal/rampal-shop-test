@@ -25,8 +25,8 @@ const ProductsList = memo(() => {
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">
+              <div className="p-4 border-b border-gray-200 mb-4">
+                <h3 className="font-semibold text-lg text-gray-900 mb-2">
                   {product.title}
                 </h3>
 
