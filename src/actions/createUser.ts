@@ -10,6 +10,9 @@ const createUser = async (
     const username = formdata.get("username");
     const email = formdata.get("email");
     const password = formdata.get("password");
+    if (!username || !email || !password) {
+      return { ...previousState, error: "All fields are required" };
+    }
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}user/signup`,
       {
@@ -25,7 +28,11 @@ const createUser = async (
     return { ...previousState, isSuccess: true, isAdmin: isAdmin };
   } catch (error) {
     if (error instanceof Error) {
-      return { ...previousState, error: error.message };
+      if (error.message.includes("409")) {
+        return { ...previousState, error: "Email already in use" };
+      } else {
+        return { ...previousState, error: error.message };
+      }
     } else {
       return { ...previousState, error: "Une erreur est survenue" };
     }
