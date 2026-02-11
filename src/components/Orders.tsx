@@ -41,7 +41,7 @@ const Orders = () => {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="bg-purple-300  p-4 flex flex-col gap-4 rounded-lg  "
+            className="bg-purple-300  p-4 flex flex-col gap-4 rounded-lg mb-10"
           >
             {draggableOrders.map((order, index) => (
               <Draggable key={order._id} draggableId={order._id} index={index}>

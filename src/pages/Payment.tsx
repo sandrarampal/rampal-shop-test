@@ -52,11 +52,6 @@ const Payment = () => {
 
   return !token ? (
     <Navigate to="/user/login" />
-  ) : cartItems.length === 0 ? (
-    <div className="flex flex-col items-center">
-      <Title content="Checkout" />
-      <p className="mb-6">Your cart is empty</p>
-    </div>
   ) : (
     <div className="flex flex-col mx-20  ">
       <div className="flex justify-center">
