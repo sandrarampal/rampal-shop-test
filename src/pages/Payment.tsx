@@ -52,12 +52,17 @@ const Payment = () => {
 
   return !token ? (
     <Navigate to="/user/login" />
+  ) : cartItems.length === 0 ? (
+    <div className="flex flex-col items-center">
+      <Title content="Checkout" />
+      <p className="mb-6">Your cart is empty</p>
+    </div>
   ) : (
     <div className="flex flex-col mx-20  ">
       <div className="flex justify-center">
         <Title content="Checkout" />
       </div>
-      <div className="lg:flex lg:justify-center lg:gap-50 lg:mt-20 lg:items-center">
+      <div className="lg:flex lg:justify-center lg:gap-50 mt-5 lg:items-center">
         <CartSummary
           cartItems={cartItems}
           totalPrice={totalPrice}
@@ -70,7 +75,7 @@ const Payment = () => {
           <button
             onClick={handlePlaceOrder}
             disabled={isLoading || cartItems.length === 0}
-            className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-200 hover:text-black hover:border transition-colors duration-300 cursor-pointer my-5 "
+            className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-300 hover:text-black transition-colors duration-300 cursor-pointer my-5 "
           >
             {isLoading ? "Placing Order..." : "Place Order"}
           </button>
