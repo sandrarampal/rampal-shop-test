@@ -45,19 +45,6 @@ Application front développée pour le test sur React - Typescript
 - **Axios** - Client HTTP
 - **JS Cookie** - Gestion des cookies
 
-## Installation
-
-### Installation des dépendances
-
-```bash
-# Cloner le repository
-git clone <url-du-repository>
-cd rampal-shop-test
-
-# Installer les dépendances
-yarn add
-```
-
 ## Structure du projet
 
 ```
