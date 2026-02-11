@@ -16,7 +16,7 @@ const InputAdress = ({ onAddressChange }: InputAdressProps) => {
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold">Delivery address</h2>
+      <h2 className="text-lg font-semibold text-center">Delivery address</h2>
       <input
         type="text"
         placeholder="Street address"
@@ -25,7 +25,7 @@ const InputAdress = ({ onAddressChange }: InputAdressProps) => {
           setStreet(e.target.value);
           handleInputChange();
         }}
-        className="p-2 border rounded"
+        className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
       />
       <input
         type="text"
@@ -35,7 +35,7 @@ const InputAdress = ({ onAddressChange }: InputAdressProps) => {
           setCity(e.target.value);
           handleInputChange();
         }}
-        className="p-2 border rounded"
+        className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
       />
       <input
         type="text"
@@ -45,7 +45,7 @@ const InputAdress = ({ onAddressChange }: InputAdressProps) => {
           setZipCode(e.target.value);
           handleInputChange();
         }}
-        className="p-2 border rounded"
+        className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
       />
     </div>
   );

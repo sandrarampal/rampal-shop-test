@@ -35,7 +35,7 @@ const ProductInfos = ({ data }: { data: TProduct }) => {
 
         <div className="border-t border-gray-200 pt-4 md:pt-6">
           <div className="flex items-center justify-start mb-4 md:mb-8">
-            <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-purple-600">
+            <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-purple-900">
               {data.price} €
             </span>
           </div>
