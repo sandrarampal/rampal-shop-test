@@ -11,7 +11,7 @@ const createUser = async (
     const email = formdata.get("email");
     const password = formdata.get("password");
     const response = await axios.post(
-      "http://site--rampal-shop-backend--96jcjn4jx467.code.run/user/signup",
+      `${import.meta.env.VITE_API_URL}user/signup`,
       {
         username,
         email,

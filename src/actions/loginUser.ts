@@ -10,7 +10,7 @@ const loginUser = async (
     const email = formdata.get("email");
     const password = formdata.get("password");
     const response = await axios.post(
-      "http://site--rampal-shop-backend--96jcjn4jx467.code.run/user/login",
+      `${import.meta.env.VITE_API_URL}user/login`,
       {
         email,
         password,

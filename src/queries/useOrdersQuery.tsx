@@ -7,7 +7,7 @@ const useOrdersQuery = (token: string | null) =>
     queryKey: ["orders"],
     queryFn: async () => {
       const { data } = await axios.get<TOrder[]>(
-        "http://site--rampal-shop-backend--96jcjn4jx467.code.run/orders",
+        `${import.meta.env.VITE_API_URL}orders`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

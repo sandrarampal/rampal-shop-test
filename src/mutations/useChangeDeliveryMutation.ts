@@ -9,7 +9,7 @@ const useChangeDeliveryMutation = (orderId: string) => {
   return useMutation({
     mutationFn: async (delivered: boolean) => {
       const response = await axios.put(
-        `http://site--rampal-shop-backend--96jcjn4jx467.code.run/orders/mark-delivered/${orderId}`,
+        `${import.meta.env.VITE_API_URL}orders/mark-delivered/${orderId}`,
         { delivered },
         {
           headers: {

@@ -14,7 +14,7 @@ export const createOrder = async (
   try {
     console.log(token);
     const response = await axios.post(
-      "http://site--rampal-shop-backend--96jcjn4jx467.code.run/orders",
+      `${import.meta.env.VITE_API_URL}orders`,
       orderData,
       {
         headers: {
