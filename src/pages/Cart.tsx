@@ -2,6 +2,7 @@ import { useStore } from "../zustand/store";
 import useAuthContext from "../context/hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import CartSummary from "../components/CartSummary";
+import Title from "../components/Title";
 
 const Cart = () => {
   const cartItems = useStore((store) => store.cartItems);
@@ -19,8 +20,8 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex flex-col items-center my-10">
-      <h1 className="text-2xl font-bold mb-5">Your Cart</h1>
+    <div className="flex flex-col items-center">
+      <Title content="Your Cart" />
       {cartItems.length === 0 ? (
         <p className="mb-6">Your cart is empty</p>
       ) : (
