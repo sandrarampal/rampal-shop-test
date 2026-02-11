@@ -4,7 +4,9 @@ import { useStore } from "../zustand/store";
 import CartSummary from "../components/CartSummary";
 import InputAdress from "../components/InputAdress";
 import { createOrder } from "../actions/createOrder";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import Title from "../components/Title";
+import OrderStatus from "../components/OrderStatus";
 
 const Payment = () => {
   const { token } = useAuthContext();
@@ -18,7 +20,7 @@ const Payment = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handlePlaceOrder = async () => {
+  const handlePlaceOrder = useCallback(async () => {
     if (!address.trim()) {
       setError("Please enter a delivery address");
       return;
@@ -46,30 +48,31 @@ const Payment = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [address, totalPrice, token, clearCart]);
 
   return !token ? (
     <Navigate to="/user/login" />
   ) : (
-    <div>
+    <div className="flex flex-col mx-20  ">
+      <div className="flex justify-center">
+        <Title content="Payment" />
+      </div>
       <CartSummary
         cartItems={cartItems}
         totalPrice={totalPrice}
         getProductQuantity={getProductQuantity}
       />
-      <InputAdress onAddressChange={setAddress} />
-
-      {error && <p className="text-red-600 text-sm">{error}</p>}
-      {successMessage && (
-        <p className="text-green-600 text-sm">{successMessage}</p>
-      )}
-      <button
-        onClick={handlePlaceOrder}
-        disabled={isLoading || cartItems.length === 0}
-        className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-blue-700"
-      >
-        {isLoading ? "Placing Order..." : "Place Order"}
-      </button>
+      <div>
+        <InputAdress onAddressChange={setAddress} />
+        <OrderStatus error={error} successMessage={successMessage} />
+        <button
+          onClick={handlePlaceOrder}
+          disabled={isLoading || cartItems.length === 0}
+          className="px-4 py-2 bg-purple-900 text-white rounded hover:bg-gray-200 hover:text-black hover:border transition-colors duration-300 cursor-pointer my-5 "
+        >
+          {isLoading ? "Placing Order..." : "Place Order"}
+        </button>
+      </div>
     </div>
   );
 };
