@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# Test Frontend Sandra Rampal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application front développée pour le test sur React - Typescript
 
-Currently, two official plugins are available:
+## Fonctionnalités
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Côté User
 
-## React Compiler
+- **Catalogue de produits** : Navigation et recherche de produits
+- **Détails produit** : Informations complètes avec images et spécifications
+- **Panier d'achat** : Ajout, modification et suppression d'articles
+- **Authentification** : Inscription et connexion utilisateur
+- **Commandes** : Processus de commande et suivi
+- **Paiement** : Interface de paiement sécurisée
+- **Profil utilisateur** : Gestion des informations personnelles
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Côté Administration
 
-## Expanding the ESLint configuration
+- **Interface admin** : Gestion des produits et commandes
+- **Suivi des commandes** : Changement de statut de livraison
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies utilisées
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Framework & Build
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **React 19.2.0** - Bibliothèque UI
+- **TypeScript** - Typage statique
+- **Vite 7.3.1** - Build tool et dev server
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Routing & State Management
+
+- **React Router** - Navigation
+- **Zustand** - Gestion d'état globale
+- **TanStack Query** - Gestion des requêtes API
+
+### UI & Styling
+
+- **Tailwind CSS** - Framework CSS
+- **React Icons** - Icônes
+- **React Loading Indicators** - Indicateurs de chargement
+- **Hello Pangea DnD** - Drag & drop
+
+### HTTP & Utils
+
+- **Axios** - Client HTTP
+- **JS Cookie** - Gestion des cookies
+
+## Installation
+
+### Installation des dépendances
+
+```bash
+# Cloner le repository
+git clone <url-du-repository>
+cd rampal-shop-test
+
+# Installer les dépendances
+yarn add
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Structure du projet
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── actions/           # Actions serveur (create order, user, login)
+├── assets/           # Images et ressources statiques
+├── components/       # Composants réutilisables
+│   ├── buttons/      # Composants boutons
+│   └── ...          # Autres composants UI
+├── context/          # Contexts React
+│   ├── hooks/        # Custom hooks pour context
+│   └── providers/    # Context providers
+├── mutations/        # Mutations TanStack Query
+├── pages/           # Composants de pages
+├── queries/         # Queries TanStack Query
+├── types/           # Types TypeScript
+└── zustand/         # Store Zustand
+```
+
+## Pages principales
+
+| Route           | Component  | Description                |
+| --------------- | ---------- | -------------------------- |
+| `/`             | Home       | Page d'accueil             |
+| `/products`     | Products   | Liste des produits         |
+| `/products/:id` | OneProduct | Détail d'un produit        |
+| `/cart`         | Cart       | Panier d'achat             |
+| `/payment`      | Payment    | Processus de paiement      |
+| `/user/login`   | Login      | Connexion utilisateur      |
+| `/user/signup`  | Signup     | Inscription utilisateur    |
+| `/admin`        | Admin      | Interface d'administration |
